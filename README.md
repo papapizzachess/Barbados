@@ -73,7 +73,6 @@ Barbados/
 
 - **Python 3.10+** with Jupyter Notebook or JupyterLab
 - **GPU** recommended (polygon training and VLM fine-tuning are compute-intensive)
-- **Open-source tools only** (required by Zindi challenge rules)
 
 ### Key dependencies
 
@@ -189,27 +188,6 @@ flowchart LR
     J --> L
     K --> L
 ```
-
-## Reproducibility
-
-- Seeds are set in `base.yaml` (`seed: 123`) and `config.yaml` (`processing.seed: 2025`), and in the segmentation notebooks (`CFG.SEED`).
-- Re-run notebooks with the same seed and data to reproduce leaderboard scores.
-- Do not hard-code predictions; all values must be model-generated (Zindi rule).
-
-## Challenge Rules (summary)
-
-- Open-source languages and tools only.
-- Use only the provided competition dataset.
-- Pretrained models are allowed if openly available.
-- Max 10 submissions per day, 300 total.
-- Max team size: 4.
-- Top 10 on the private leaderboard must submit reproducible code within 48 hours of the challenge closing.
-
-See the [full challenge rules](https://zindi.africa/competitions/barbados-lands-and-surveys-plot-automation-challenge) on Zindi for complete terms, prizes, and data usage restrictions.
-
-## License and Data Usage
-
-The competition dataset is provided **solely for participation in this Zindi challenge**. Do not copy, distribute, or use it for other research, commercial, educational, or public purposes without permission.
 
 ## References
 
