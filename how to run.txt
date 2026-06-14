@@ -1,0 +1,7 @@
+1. For polygon segmentation, run barbados-polyseg_kaggle.ipynb for training. Then for inference, run barbados-polyinference_kaggle.
+
+2. For metadata extraction, run text-extraction.ipynb. This notebook includes training and inference.
+
+3. For OCR post processing, run the two helpers: "OCR Postprocessing Manual Labels.ipynb" and "OCR Postprocessing Predictions.ipynb".
+
+4. For final evaluation, run "Accuracy Calculation.ipynb", "IoU Calculation.ipynb", and "WER Calculation.ipynb"

@@ -1,0 +1,7 @@
+root_dir: /workspace
+test_images_dir: /workspace/datadata/survey_plans
+test_csv_path: /workspace/datadata/Test.csv
+
+seed: 123
+folds: 5
+val_fold: 2

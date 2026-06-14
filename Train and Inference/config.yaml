@@ -1,0 +1,103 @@
+paths:
+  root_dir: /workspace
+  data_dir: /workspace/datadata
+  models_dir: /workspace/models
+  output_dir: /workspace/outputs
+files:
+  input_csv: df.csv
+  patched_csv: patched_{size}.csv
+  label_corrections_csv: label_corrections.csv
+  inference_csv: test_predictions.csv
+  final_model_dir: qwen3vl8b_finetuned_lora
+model:
+  repo_id: Qwen/Qwen2.5-VL-3B-Instruct
+  load_in_4bit: true
+  use_gradient_checkpointing: unsloth
+lora:
+  r: 16
+  alpha: 16
+  dropout: 0.35
+  bias: none
+  random_state: 3407
+  use_rslora: false
+  finetune_vision_layers: true
+  finetune_language_layers: true
+  finetune_attention_modules: true
+  finetune_mlp_modules: true
+images:
+  sizes:
+  - 1024
+  - 896
+  target_size: 1024
+  letterbox_fill:
+  - 255
+  - 255
+  - 255
+  tiles:
+  - full
+  - top
+  - bottom
+  - top_left
+  - top_right
+  - bottom_left
+  - bottom_right
+training:
+  label_correction:
+    batch_size: 2
+    max_new_tokens: 384
+    temperature: 0.001
+  stage1:
+    per_device_batch_size: 2
+    gradient_accumulation_steps: 4
+    learning_rate: 0.0001
+    max_steps: 80
+    warmup_ratio: 0.1
+    weight_decay: 0.05
+    max_grad_norm: 0.3
+    lr_scheduler: cosine
+    bf16: false
+    tf32: false
+    neftune_noise_alpha: 5
+    fp16: true
+  stage2:
+    per_device_batch_size: 2
+    gradient_accumulation_steps: 4
+    learning_rate: 0.0001
+    max_steps: 80
+    warmup_ratio: 0.1
+    weight_decay: 0.05
+    max_grad_norm: 0.3
+    lr_scheduler: cosine
+    bf16: false
+    tf32: false
+    neftune_noise_alpha: 5
+    fp16: true
+inference:
+  max_new_tokens: 384
+  do_sample: false
+  max_seq_length: 11200
+  collator_resize: 512
+fields:
+  extraction:
+  - Land Surveyor
+  - Land Surveyor2
+  - Surveyed For
+  - Certified date
+  - Total Area
+  - Unit of Measurement
+  - Address
+  - Address2
+  - Parish
+  - LT Num
+  correction:
+  - Land Surveyor
+  - Surveyed For
+  - Certified date
+  - Total Area
+  - Unit of Measurement
+  - Address
+  - LT Num
+processing:
+  max_workers: 32
+  cuda_device: '0'
+  seed: 2025
